@@ -1,0 +1,465 @@
+@import url(nullStyle.css);
+@import url(media.css);
+
+//color
+$whiteBase: #fff;
+$light: #f4f4f4;
+$card-BtnGray: #e5e5e5;
+$hoverGray: #d6d6d6;
+$srv-realGray: #c4c4c4;
+$gray: #777777;
+$darkGray: #3c3c3c;
+
+$hoverYellow: #b7fff4;
+$lightYellow: #39e2c9;
+$yellowBase: #a2fff1;
+$hoverDarkYellow: #3eddc5;
+
+$green: #4f3558;
+
+$blue: #328384;
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+
+  background: $light;
+
+  max-width: 1200px;
+  gap: 30px;
+  margin: 0 auto;
+  padding: 60px 15px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 30px;
+}
+.card {
+  background: $whiteBase;
+  transition: transform 0.2s;
+
+  max-width: 270px;
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+#card_more {
+  display: none;
+}
+.card_more__show {
+  display: block !important;
+}
+.card-img {
+  position: relative;
+  font-weight: 400;
+  font-size: 14px;
+  &::before {
+    content: "Комфорт";
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    background: $yellowBase;
+    border-radius: 4px;
+    padding: 0 10px;
+  }
+  &::after {
+    color: $whiteBase;
+    content: "Рассрочка 12 мес.";
+    position: absolute;
+    top: 10px;
+    right: 23px;
+    background: $green;
+    border-radius: 4px;
+    padding: 0 10px;
+  }
+}
+.card-more {
+  display: none;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.body {
+  display: flex;
+  flex-flow: column;
+
+  gap: 4px;
+  padding: 15px;
+
+  font-weight: 400;
+  font-size: 14px;
+
+  &_title {
+    font-weight: 700;
+    font-size: 18px;
+  }
+  &_metro::before {
+    content: "";
+    display: inline-block;
+
+    width: 16px;
+    height: 11px;
+    margin-right: 10px;
+
+    background-image: url(img/metro.png);
+  }
+  &_address {
+    color: $gray;
+  }
+}
+.card-btn {
+  width: 100%;
+  height: 80px;
+
+  background: $card-BtnGray;
+
+  cursor: pointer;
+  &:hover {
+    background: $hoverGray;
+  }
+  &_text:hover {
+    text-decoration: underline;
+  }
+  &_text {
+    font-size: 18px;
+    color: $blue;
+    &::before {
+      content: "";
+
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+      vertical-align: text-bottom;
+
+      display: inline-block;
+      background-image: url(img/plus-circle.svg);
+    }
+  }
+}
+
+//КНОПКА ПОКАЗА ФИЛЬТРОВ
+.filter-menu-open {
+  cursor: pointer;
+
+  display: none;
+  position: fixed;
+
+  top: 30px;
+  right: 30px;
+
+  min-width: 50px;
+  height: 50px;
+
+  padding: 10px;
+  border-radius: 50%;
+
+  background-color: rgba(255, 255, 255, 0.726);
+  box-shadow: 0 0 7px rgb(0, 0, 0);
+  &_img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+//КОНТЕЙНЕР С ФИЛЬТРАМИ
+.nav-container {
+  min-width: 270px;
+  flex-flow: column;
+  gap: 30px;
+  display: flex;
+}
+.modul {
+  &_title {
+    cursor: pointer;
+
+    font-weight: bold;
+    position: relative;
+  }
+  &_arrow {
+    position: absolute;
+    top: 8px;
+    right: 0;
+
+    vertical-align: initial;
+    display: inline-block;
+
+    background-image: url(img/arrow-up.svg);
+    background-position: center;
+    transition: transform 0.2s;
+
+    height: 8px;
+    width: 16px;
+    &__active {
+      transform: rotate(180deg) !important;
+    }
+  }
+  &_body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.1s, margin-top 0.3s;
+  }
+  &_body__active {
+    max-height: 100%;
+    margin-top: 20px;
+  }
+}
+.row {
+  display: flex;
+
+  border-right: 1px solid $hoverGray;
+  border-left: 1px solid $hoverGray;
+  border-top: 1px solid $hoverGray;
+  &:first-child {
+    border-top: 1px solid $hoverGray;
+    border-radius: 4px 4px 0 0;
+  }
+  &:last-child {
+    border-bottom: 1px solid $hoverGray;
+    border-radius: 0 0 4px 4px;
+  }
+}
+
+// CHECKBOX
+.chx-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 14px;
+
+  height: 50px;
+  width: 100%;
+
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+.chx-btn:hover {
+  background-color: $hoverYellow;
+}
+.real-chx:checked:hover + .chx-btn {
+  background-color: $hoverDarkYellow;
+}
+.real-chx {
+  display: none;
+}
+.real-chx:checked + .chx-btn {
+  background-color: $yellowBase;
+}
+
+// RADIO
+
+.radio-group {
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+}
+.rad-form {
+  display: flex;
+}
+.rad-form:hover {
+  font-weight: 800;
+}
+.rad-btn {
+  cursor: pointer;
+}
+.fake-rad {
+  display: none;
+}
+.real-rad {
+  position: relative;
+
+  background: $whiteBase;
+
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+
+  border: 1px solid $gray;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.real-rad::before {
+  content: "";
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  background: $darkGray;
+
+  display: none;
+}
+.fake-rad:checked + .real-rad {
+  background-color: $lightYellow;
+}
+.fake-rad:checked + .real-rad::before {
+  display: inline-block;
+}
+
+// CHECKBOX
+
+.checkbox-group {
+  display: flex;
+  flex-flow: column;
+  gap: 15px;
+}
+.checkbox-group__last {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.1s, margin-top 0.2s;
+  margin: 0;
+}
+.show {
+  max-height: 100%;
+  margin-top: 16px;
+}
+.show-btn {
+  margin-top: 15px;
+  color: $blue;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.show-btn__active {
+  margin-top: 15px;
+  color: $blue;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.checkbox-form {
+  display: flex;
+}
+.checkbox-form:hover {
+  font-weight: 800;
+}
+.checkbox-btn {
+  cursor: pointer;
+}
+.fake-checkbox {
+  display: none;
+}
+.real-checkbox {
+  position: relative;
+
+  background: $whiteBase;
+
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+
+  border: 1px solid $gray;
+  cursor: pointer;
+}
+.real-checkbox::before {
+  content: "";
+  background-image: url(img/done.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 20px;
+  height: 20px;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  display: none;
+  position: absolute;
+}
+.fake-checkbox:checked + .real-checkbox {
+  background-color: $lightYellow;
+}
+.fake-checkbox:checked + .real-checkbox::before {
+  display: inline-block;
+}
+
+//SERVICE
+
+.service {
+  display: flex;
+}
+.service:hover {
+  font-weight: 800;
+}
+.srv-fake {
+  display: none;
+}
+.srv-fake:checked + .srv-real::after {
+  right: 2px;
+}
+.srv-fake:checked + .srv-real {
+  background: $lightYellow;
+}
+.srv-real {
+  cursor: pointer;
+
+  background: $srv-realGray;
+
+  position: relative;
+  width: 37px;
+  height: 20px;
+
+  margin-right: 10px;
+  border-radius: 10px;
+}
+.srv-real::after {
+  content: "";
+
+  background: $darkGray;
+  border-radius: 50%;
+
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  right: 19px;
+  transition: right 0.2s;
+}
+.srv-btn {
+  cursor: pointer;
+}
+
+//FILTERS
+
+.btn-filters {
+  cursor: pointer;
+  justify-content: center;
+  height: 50px;
+  align-items: center;
+  border-radius: 4px;
+  display: flex;
+  transition: background-color 0.2s;
+}
+.apply-filters {
+  background-color: $yellowBase;
+  &:hover {
+    background-color: $hoverDarkYellow;
+  }
+}
+.reset-filters {
+  vertical-align: baseline;
+  border: 1px solid $hoverGray;
+  &:hover {
+    background-color: $card-BtnGray;
+  }
+  &::before {
+    content: "";
+    background: url(img/x.svg) center;
+    width: 16px;
+    height: 16px;
+    padding-right: 30px;
+  }
+}
